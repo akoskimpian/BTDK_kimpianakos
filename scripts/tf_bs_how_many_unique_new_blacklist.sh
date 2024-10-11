@@ -4,8 +4,8 @@
 BED_FILE="ENCODE_peaks_in_promoters_with_names.bed"  # Your input BED file with promoters and gene names
 BLACKLIST_FILE="hg38-blacklist.v2.bed"  # The blacklist BED file to filter out unwanted regions
 FASTA_FILE="TFLink_Homo_sapiens_bindingSites_LS_v1.0.fasta"  # Your input FASTA file with TF binding sites
-OUTPUT_FILE="tf_unique_gene_counts_blacklist.txt"  # Output file for unique gene counts per TF
-PROMOTER_BINDING_OUTPUT="promoters_with_tf_binding_blacklist.txt"  # Output file for promoters with at least one TF binding
+OUTPUT_FILE="tf_unique_gene_counts.txt"  # Output file for unique gene counts per TF
+PROMOTER_BINDING_OUTPUT="promoters_with_tf_binding_.txt"  # Output file for promoters with at least one TF binding
 TEMP_DIR="./temp"  # Temporary directory for intermediate files
 
 # Create temporary directory
