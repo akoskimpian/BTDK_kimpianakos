@@ -26,3 +26,10 @@ open_and_in_promoter.sh:
 
 tf_bs_how_many_unique_new_blacklist.sh:
   &emsp;Eltávolítja a "feketelistás" régiókat, majd a promóterekben található nyitott régiókban (az előző script output-ja) 199 transzkripciós faktor kötőhelyeit keresi. Az output az, hogy az egyes vizsgált transzkripciós faktorok hány különböző gén promóteréhez kötnek, azaz hány TF-célgén interakció valósulhat meg a vizsgált minták alapján.
+
+
+### Eredmények (results)
+
+peaks_in_promoters.bed: A vastagbél ATAC-seq mintái alapján készült konszenzus profilban található azon peak-ek, amelyek promótereken belül találhatók.
+
+results.csv: A vizsgált transzkripciós faktorok, hogy ezek a vastagbélben hány különböző gén promóterébe képesek bekötni illetve összesen hány ismert célgénnel van interakciójuk.
