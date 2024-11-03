@@ -10,7 +10,7 @@ bigwig_median.sh:
   &emsp;A felhasználandó bigwig formátumú fájlokból egy wig fájlt készít, ami a genom minden pozícióban a felhasznált bigwig fájlokból számolt mediánt tartalmazza.
 
 filter_and_convert_median.sh:
-  &emsp;Eltávolítja a véletlenszerű (random) scaffoldokat a wig fájlból, majd a fájlt BigWig formátumba konvertálja.
+  &emsp;Eltávolítja a véletlenszerű (random) scaffoldokat a wig fájlból, majd a fájlt BigWig formátumba konvertálja. Az eredmény a konszenzus fájl.
   
 chunk_creation.sh:
   &emsp;Számítógépem kapacitáskorlátai és a fájl nagy mérete miatt a bigwig fájlt 10 millió sort tartalmazó "chunk"-okra osztottam.
