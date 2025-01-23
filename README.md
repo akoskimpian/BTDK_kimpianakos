@@ -1,35 +1,58 @@
-# Kimpián Ákos BTDK dolgozatához felhasznált scriptjei
+# TFLink 2.0 ATAC-seq Pipeline
 
 
-Előkészületek: 
-A következő eszközök szükségesek a bash scriptek lefuttatásához: <br> wiggletools, wigToBigWig, bigWigToBedGraph, fseq2, bedtools
 
-### A "scripts" mappában található kódokat használtam fel elemzésem során az itteni felsorolásuk sorrendjében.
+This repository contains scripts developed for processing ATAC-seq data to identify transcription factor - target gene interactions in a tissue-specific manner. The pipeline uses ATAC-seq data to predict the interactions likely to occur in a given organ/tissue/cell type.
 
-bigwig_median.sh:
-  &emsp;A felhasználandó bigwig formátumú fájlokból egy wig fájlt készít, ami a genom minden pozícióban a felhasznált bigwig fájlokból számolt mediánt tartalmazza.
+<br />
 
-filter_and_convert_median.sh:
-  &emsp;Eltávolítja a véletlenszerű (random) scaffoldokat a wig fájlból, majd a fájlt BigWig formátumba konvertálja. Az eredmény a konszenzus fájl.
-  
-chunk_creation.sh:
-  &emsp;Számítógépem kapacitáskorlátai és a fájl nagy mérete miatt a bigwig fájlt 10 millió sort tartalmazó "chunk"-okra osztottam.
+**Prerequisites**
 
-chunk_callpeak.sh:
-  &emsp;Végigiterál az összes chunk-on, majd elvégzi a "peak calling" folyamatát, az eredmény az egyes chunkokhoz tartozó, a csúcsrégiókat tartalmazó bed fájlok.
+The following tools are required to run the scripts in this pipeline:
 
-fseq_results_merge.sh:
-  &emsp;A chunk-ok peakjeit egyetlen bed fájlba egyesíti.
+-wiggletools
 
-open_and_in_promoter.sh:
-  &emsp;Átfedéseket azonosít promóter régiókkal, majd ezeket az átfedő régiókat output-olja.
+-wigToBigWig
 
-tf_bs_how_many_unique_new_blacklist.sh:
-  &emsp;Eltávolítja a "feketelistás" régiókat, majd a promóterekben található nyitott régiókban (az előző script output-ja) 199 transzkripciós faktor kötőhelyeit keresi. Az output az, hogy az egyes vizsgált transzkripciós faktorok hány különböző gén promóteréhez kötnek, azaz hány TF-célgén interakció valósulhat meg a vizsgált minták alapján.
+-bigWigToBedGraph
+
+-fseq2
+
+-bedtools
+
+<br />
+
+**Input Files**
+
+ATAC-seq BED files: Represent open chromatin regions identified in tissue-specific samples
+
+Promoter regions BED file: Define promoter locations (e.g. from Ensembl; GRCh38.p14)
+
+Blacklist regions: Known problematic regions to exclude from analysis (e.g. from ENCODE)
+
+FASTA containing TF binding sites: Contains transcription factor binding site sequences and coordinates (e.g. downloadable from TFLink, originating from ChIP-seq data)
+
+<br />
+
+**Output Files**
+
+Consensus BED file: Open chromatin regions present in at least 50% of the input samples
+
+TF-gene interaction pairs: File containing TF names and their corresponding target genes
+
+Unique genes per TF: File listing each TF and the number of genes it interacts with
+<br />
 
 
-### Eredmények (results)
+**Example usage**
 
-peaks_in_promoters.bed: A vastagbél ATAC-seq mintái alapján készült konszenzus profilban található azon peak-ek, amelyek promótereken belül találhatók.
+```
+./pipeline.sh --input <input_file|directory|list.txt> --output <output_dir>  
+```
+<br />
 
-results.csv: A vizsgált transzkripciós faktorok, hogy ezek a vastagbélben hány különböző gén promóterébe képesek bekötni illetve összesen hány ismert célgénnel van interakciójuk.
+**Notes**
+
+Developed by Ákos Kimpián as part of Eszter Ari's research group
+
+
